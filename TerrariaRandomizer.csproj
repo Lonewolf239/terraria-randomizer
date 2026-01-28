@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>disable</Nullable>
+		<NoWarn>$(NoWarn);IL2104</NoWarn>
+
+		<PublishSingleFile>true</PublishSingleFile>
+		<SelfContained>true</SelfContained>
+		<RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+		<PublishTrimmed>true</PublishTrimmed>
+		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
+		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+
+		<Version>0.3</Version>
+		<AssemblyVersion>0.3.0.0</AssemblyVersion>
+		<FileVersion>0.3.0.0</FileVersion>
+		<AssemblyInformationalVersion>0.3</AssemblyInformationalVersion>
+
+		<AssemblyTitle>TerrariaRandom</AssemblyTitle>
+		<AssemblyProduct>Terraria Random</AssemblyProduct>
+		<Authors>Lonewolf239</Authors>
+		<Copyright>© 2026</Copyright>
+	</PropertyGroup>
+	<ItemGroup>
+		<TrimmableAssembly Include="CommandLine" />
+		<PackageReference Include="CommandLineParser" Version="2.9.1" />
+		<PackageReference Include="Spectre.Console" Version="0.54.0" />
+	</ItemGroup>
+</Project>
