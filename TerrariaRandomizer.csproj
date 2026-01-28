@@ -9,7 +9,6 @@
 		<PublishSingleFile>true</PublishSingleFile>
 		<SelfContained>true</SelfContained>
 		<RuntimeIdentifier>linux-x64</RuntimeIdentifier>
-		<PublishTrimmed>true</PublishTrimmed>
 		<IncludeAllContentForSelfExtract>true</IncludeAllContentForSelfExtract>
 		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
 
@@ -24,7 +23,6 @@
 		<Copyright>© 2026</Copyright>
 	</PropertyGroup>
 	<ItemGroup>
-		<TrimmableAssembly Include="CommandLine" />
 		<PackageReference Include="CommandLineParser" Version="2.9.1" />
 		<PackageReference Include="Spectre.Console" Version="0.54.0" />
 	</ItemGroup>
