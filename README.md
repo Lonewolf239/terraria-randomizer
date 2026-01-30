@@ -71,7 +71,7 @@ dotnet publish -c Release -r <rid> --self-contained
 - Run `--listLanguages` for all available
 
 ## Example Output
-#TODO
+![Demo](https://github.com/Lonewolf239/TerrariaRandom/blob/master/demo.png)
 
 ## Credits
 **Author:** [Lonewolf239](https://github.com/Lonewolf239)
