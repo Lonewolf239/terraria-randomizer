@@ -36,7 +36,7 @@
 
 **Calamity Death Mode Rogue only:**
 ```bash
-./terraria-randomizer --onlyCalamity --disableClasses="Melee,Ranged,Mage,Summoner"
+./terraria-randomizer --onlyCalamity --enableClasses="Rogue"
 ```
 
 ## All Options
@@ -54,6 +54,7 @@
 | `--noAscii` | Disable ASCII art | `false` |
 | `--noColor` | Disable colors | `false` |
 | `--disableClasses="Melee,Ranged"` | Disable specific classes | `none` |
+| `--enableClasses="Melee,Ranged` | Enable ONLY listed classes | `none` |
 | `--language=en` | Set language | `en` |
 
 *Run `./terraria-randomizer --help` for full list.*
