@@ -20,17 +20,17 @@
 
 **Generate one random preset:**
 ```bash
-./terraria-random
+./terraria-randomizer
 ```
 
 **Generate 4 fast Vanilla characters (no animation):**
 ```bash
-./terraria-random --count=4 --fast --onlyVanilla --noAscii
+./terraria-randomizer --count=4 --fast --onlyVanilla --noAscii
 ```
 
 **Calamity Death Mode Rogue only:**
 ```bash
-./terraria-random --onlyCalamity --disableClasses="Melee,Ranged,Mage,Summoner"
+./terraria-randomizer --onlyCalamity --disableClasses="Melee,Ranged,Mage,Summoner"
 ```
 
 ## All Options
@@ -49,7 +49,7 @@
 | `--disableClasses="Melee,Ranged"` | Disable specific classes | - |
 | `--language=en` | Set language | `en` |
 
-*Run `./terraria-random --help` for full list.*
+*Run `./terraria-randomizer --help` for full list.*
 
 ## Installation & Requirements
 
@@ -59,7 +59,7 @@
 
 ### Build from source
 ```bash
-git clone https://github.com/Lonewolf239/TerrariaRandom.git
+git clone https://github.com/Lonewolf239/terraria-randomizer.git
 cd terraria-randomizer
 dotnet build
 dotnet publish -c Release -r <rid> --self-contained
@@ -71,7 +71,7 @@ dotnet publish -c Release -r <rid> --self-contained
 - Run `--listLanguages` for all available
 
 ## Example Output
-![Demo](https://github.com/Lonewolf239/TerrariaRandom/blob/master/demo.png)
+![Demo](https://github.com/Lonewolf239/terraria-randomizer/blob/master/demo.png)
 
 ## Credits
 **Author:** [Lonewolf239](https://github.com/Lonewolf239)
