@@ -2,36 +2,24 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Spectre.Console;
+using TerrariaRandomizer.Configuration;
+using TerrariaRandomizer.Data;
 
 namespace TerrariaRandomizer;
 
 public static class UI
 {
     public static bool NoAscii = false;
-    public static bool Russian = false;
+    public static string Language = "en";
 
     public static void PrintTitle()
     {
-        string title = @"       [#228B22]+%*[/]            [lime]______[/]
-   [#228B22]**+*=+=+*#[/]        [lime]/\__  _\                                     __[/]
-   [#228B22]*#**+++*+#+%[/]      [lime]\/_/\ \/    __   _ __   _ __    __     _ __ /\_\     __[/]
-  [#228B22]+***+*+++*%*#[/]         [lime]\ \ \  /'__`\/\`'__\/\`'__\/'__`\  /\`'__\/\ \  /'__`\[/]
-  [#228B22]%#*#**#***[/][#1A3A1A]##%[/]          [lime]\ \ \/\  __/\ \ \/ \ \ \//\ \L\.\_\ \ \/ \ \ \/\ \L\.\_[/]
-   [#228B22]####[/][#1A3A1A]##%###%[/]            [lime]\ \_\ \____\\ \_\  \ \_\\ \__/.\_\\ \_\  \ \_\ \__/.\_\[/]
-      [#1A3A1A]@%#[/][#5A2A2A]+[/]                 [lime]\/_/\/____/ \/_/   \/_/ \/__/\/_/ \/_/   \/_/\/__/\/_/[/]
-      [#3D1A1A]=#[/][#5A2A2A]*=[/]
-[#228B22]%*+*%[/] [#3D1A1A].#[/][#5A2A2A]*+[/]                 [lime]____                         __[/]
- [#228B22]:[/][#1A3D1A]##[/][#3D1A1A]%+**[/][#5A2A2A]*=[/]                [lime]/\  _`\     [yellow]By.Lonewolf239[/]   /\ \[/]                [grey]v" + Program.Version + @"[/]
-      [#3D1A1A]:#[/][#5A2A2A]*=[/]  [#1A3D1A]#[/][#228B22]++=%[/]         [lime]\ \ \L\ \     __      ___    \_\ \    ___     ___ ___[/]
-      [#3D1A1A]:#[/][#5A2A2A]+=#+[/][#1A3D1A]*##[/][#228B22]#[/]           [lime]\ \ ,  /   /'__`\  /' _ `\  /'_` \  / __`\ /' __` __`\[/]
-      [#3D1A1A].*[/][#5A2A2A]*=[/]                  [lime]\ \ \\ \ /\ \L\.\_/\ \/\ \/\ \L\ \/\ \L\ \/\ \/\ \/\ \[/]
-     [#3D1A1A].%#[/][#5A2A2A]++#[/]                  [lime]\ \_\ \_\ \__/.\_\ \_\ \_\ \___,_\ \____/\ \_\ \_\ \_\[/]
-   [#3D1A1A].#+#%[/][#5A2A2A]#=%++[/]                 [lime]\/_/\/ /\/__/\/_/\/_/\/_/\/__,_ /\/___/  \/_/\/_/\/_/[/]";
         if (NoAscii)
         {
             PrintTitleNoAscii();
             return;
         }
+        string title = Constants.AsciiArt;
         string[] lines = title.Split('\n');
         foreach (string line in lines) AnsiConsole.MarkupLine(line);
         Console.WriteLine('\n');
@@ -39,7 +27,7 @@ public static class UI
 
     private static void PrintTitleNoAscii()
     {
-        AnsiConsole.MarkupLine("[lime]Terraria Random[/]\n[yellow]By.Lonewolf239[/] [grey]v" + Program.Version + "[/]");
+        AnsiConsole.MarkupLine("[lime]Terraria Random[/]\n[yellow]By.Lonewolf239[/] [grey]v" + Constants.Version + "[/]");
         Console.WriteLine('\n');
     }
 
@@ -57,69 +45,47 @@ public static class UI
     public static void PrintError(string message)
     {
         Console.CursorVisible = true;
-        if (Russian) AnsiConsole.MarkupLine($"[red]Ошибка:[/] {message}");
-        else AnsiConsole.MarkupLine($"[red]Error:[/] {message}");
+        AnsiConsole.MarkupLine("UI.Error".Localize(Language) + message);
         Environment.Exit(1);
     }
 
     public static void PrintRule()
     {
-        string title = Russian ? "Enter/Space - пересоздать, Esc - выход" : "Enter/Space - recreate, Esc - exit";
+        string title = "UI.Rule.Title".Localize(Language);
+        string subTitle = "UI.Rule.SubTitle".Localize(Language);
         var rule = new Rule("[silver]" + title + "[/]");
         rule.Style = Style.Parse("grey");
+        var subRule = new Rule("[silver]" + subTitle + "[/]");
+        subRule.Style = Style.Parse("grey");
         AnsiConsole.Write(rule);
+        AnsiConsole.Write(subRule);
     }
 
     public static void PrintHelp()
     {
         Console.CursorVisible = true;
-        PrintTitle();
-        if (Russian)
-        {
-            AnsiConsole.MarkupLine("Параметры:");
-            AnsiConsole.MarkupLine("  [yellow]--help[/]                       [grey]Показать эту справку[/]");
-            AnsiConsole.MarkupLine("  [yellow]--count=N[/]                    [grey]Количество персонажей для генерации (по умолчанию: 1, макс: 12)[/]");
-            AnsiConsole.MarkupLine("  [yellow]--maxAnimationFrames=N[/]       [grey]Макс. кадров анимации (по умолчанию: 150, мин: 55)[/]");
-            AnsiConsole.MarkupLine("  [yellow]--fast[/]                       [grey]Отключить анимацию ролла[/]");
-            AnsiConsole.MarkupLine("  [yellow]--onlyVanilla[/]                [grey]Только режим Vanilla[/]");
-            AnsiConsole.MarkupLine("  [yellow]--onlyCalamity[/]               [grey]Только режим Calamity[/]");
-            AnsiConsole.MarkupLine("  [yellow]--useSeeds[/]                   [grey]Использовать специальные сиды[/]");
-            AnsiConsole.MarkupLine("  [yellow]--useChallenges[/]              [grey]Использовать испытания[/]");
-            AnsiConsole.MarkupLine("  [yellow]--useWorldSize[/]               [grey]Использовать размер мира[/]");
-            AnsiConsole.MarkupLine("  [yellow]--useDifficulty[/]              [grey]Использовать сложность[/]");
-            AnsiConsole.MarkupLine("  [yellow]--noAscii[/]                    [grey]Отключить ASCII-арт[/]");
-            AnsiConsole.MarkupLine("  [yellow]--noColor[/]                    [grey]Отключить цвета[/]");
-            AnsiConsole.MarkupLine("  [yellow]--disableClasses=CLASS,...[/]   [grey]Отключить определённые классы[/]");
-            AnsiConsole.MarkupLine("  [yellow]--listClasses[/]                [grey]Список доступных классов[/]");
-            AnsiConsole.MarkupLine("  [yellow]--ru[/]                         [grey]Включить русский язык[/]");
-            Console.WriteLine();
-            AnsiConsole.MarkupLine("[grey]Примеры:[/]");
-            AnsiConsole.MarkupLine("  [green]terraria-random[/] [yellow]--count=3 --fast --noAscii --noColor[/]");
-            AnsiConsole.MarkupLine("  [green]terraria-random[/] [yellow]--onlyCalamity --useChallenges --useSeeds[/]");
-        }
-        else
-        {
-            AnsiConsole.MarkupLine("Options:");
-            AnsiConsole.MarkupLine("  [yellow]--help[/]                       [grey]Show this help[/]");
-            AnsiConsole.MarkupLine("  [yellow]--count=N[/]                    [grey]Number of characters to generate (default: 1, max: 12)[/]");
-            AnsiConsole.MarkupLine("  [yellow]--maxAnimationFrames=N[/]       [grey]Max animation frames (default: 150, min: 55)[/]");
-            AnsiConsole.MarkupLine("  [yellow]--fast[/]                       [grey]Disable roll animation[/]");
-            AnsiConsole.MarkupLine("  [yellow]--onlyVanilla[/]                [grey]Only Vanilla mode[/]");
-            AnsiConsole.MarkupLine("  [yellow]--onlyCalamity[/]               [grey]Only Calamity mode[/]");
-            AnsiConsole.MarkupLine("  [yellow]--useSeeds[/]                   [grey]Use special seeds[/]");
-            AnsiConsole.MarkupLine("  [yellow]--useChallenges[/]              [grey]Use challenges[/]");
-            AnsiConsole.MarkupLine("  [yellow]--useWorldSize[/]               [grey]Use world size[/]");
-            AnsiConsole.MarkupLine("  [yellow]--useDifficulty[/]              [grey]Use difficulty[/]");
-            AnsiConsole.MarkupLine("  [yellow]--noAscii[/]                    [grey]Disable ASCII art[/]");
-            AnsiConsole.MarkupLine("  [yellow]--noColor[/]                    [grey]Disable colors[/]");
-            AnsiConsole.MarkupLine("  [yellow]--disableClasses=CLASS,...[/]   [grey]Disable specific classes[/]");
-            AnsiConsole.MarkupLine("  [yellow]--listClasses[/]                [grey]List available classes[/]");
-            AnsiConsole.MarkupLine("  [yellow]--ru[/]                         [grey]Enable russian language[/]");
-            Console.WriteLine();
-            AnsiConsole.MarkupLine("[grey]Examples:[/]");
-            AnsiConsole.MarkupLine("  [green]terraria-random[/] [yellow]--count=3 --fast --noAscii --noColor[/]");
-            AnsiConsole.MarkupLine("  [green]terraria-random[/] [yellow]--onlyCalamity --useChallenges --useSeeds[/]");
-        }
+        PrintTitleNoAscii();
+        AnsiConsole.MarkupLine("UI.Help.Options".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.Help".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.Count".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.MaxAnimationFrames".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.Fast".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.OnlyVanilla".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.OnlyCalamity".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.UseSeeds".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.UseChallenges".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.UseWorldSize".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.UseDifficulty".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.NoAscii".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.NoColor".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.DisableClasses".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.ListClasses".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.Language".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.Languages".Localize(Language));
+        Console.WriteLine();
+        AnsiConsole.MarkupLine("UI.Help.Examples".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Examples.Example1".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Examples.Example2".Localize(Language));
         Console.WriteLine();
         Environment.Exit(0);
     }
@@ -128,16 +94,20 @@ public static class UI
     {
         Console.CursorVisible = true;
         PrintTitleNoAscii();
-        if (Russian)
-        {
-            AnsiConsole.MarkupLine("[grey]Доступные классы:[/]");
-            foreach (var item in classes) AnsiConsole.MarkupLine("  [green]" + item + "[/]");
-        }
-        else
-        {
-            AnsiConsole.MarkupLine("[grey]Available classes:[/]");
-            foreach (var item in classes) AnsiConsole.MarkupLine("  [green]" + item + "[/]");
-        }
+        AnsiConsole.MarkupLine("UI.Classes".Localize(Language));
+        foreach (var item in classes)
+            AnsiConsole.MarkupLine($"  [green]{item}[/]");
+        Console.WriteLine();
+        Environment.Exit(0);
+    }
+
+    public static void PrintListLanguages(List<string> languages)
+    {
+        Console.CursorVisible = true;
+        PrintTitleNoAscii();
+        AnsiConsole.MarkupLine("UI.Language".Localize(Language));
+        foreach (var item in languages)
+            AnsiConsole.MarkupLine($"  [green]{item}[/]");
         Console.WriteLine();
         Environment.Exit(0);
     }
@@ -158,33 +128,32 @@ public static class UI
 
     public static void PrintResults(Parameters parameters, GenerationResult generationResult)
     {
-        string T(string ruText, string enText) => Russian ? ruText : enText;
-        string gameTypeColor = GetColor(parameters.GameTypeColors, parameters.GameTypes, generationResult.GameType);
+        string gameTypeColor = GetColor(Constants.GameTypeColors, Constants.GameTypes, generationResult.GameType);
         string classColor = generationResult.CharacterClass == "Rogue"
-            ? parameters.RogueClassColor
-            : GetColor(parameters.ClassColors, parameters.Classes, generationResult.CharacterClass);
-        string evilColor = GetColor(parameters.ContagionColors, parameters.Contagions, generationResult.Evil);
-        string challengeColor = GetColor(parameters.ChallengeColors, parameters.Challenges, generationResult.Challenge);
-        string seedColor = GetColor(parameters.SpecialSeedColors, parameters.SpecialSeeds, generationResult.Seed);
-        string mapSizeColor = GetColor(parameters.MapSizeColors, parameters.MapSizes, generationResult.MapSize);
-        string difficultyColor = GetColor(parameters.DifficultyColors, parameters.Difficultys, generationResult.Difficulty);
-        string calamityDifficultyColor = GetColor(parameters.CalamityDifficultyColors, parameters.CalamityDifficultys, generationResult.CalamityDifficulty);
+            ? Constants.RogueClassColor
+            : GetColor(Constants.ClassColors, Constants.Classes, generationResult.CharacterClass);
+        string evilColor = GetColor(Constants.ContagionColors, Constants.Contagions, generationResult.Evil);
+        string challengeColor = GetColor(Constants.ChallengeColors, Constants.Challenges, generationResult.Challenge);
+        string seedColor = GetColor(Constants.SpecialSeedColors, Constants.SpecialSeeds, generationResult.Seed);
+        string mapSizeColor = GetColor(Constants.MapSizeColors, Constants.MapSizes, generationResult.MapSize);
+        string difficultyColor = GetColor(Constants.DifficultyColors, Constants.Difficultys, generationResult.Difficulty);
+        string calamityDifficultyColor = GetColor(Constants.CalamityDifficultyColors, Constants.CalamityDifficultys, generationResult.CalamityDifficulty);
         string worldName = $"{generationResult.Name}'s world";
         string difficulty = generationResult.GameType == "Vanilla"
             ? Colorize(generationResult.Difficulty, difficultyColor)
             : $"{Colorize(generationResult.CalamityDifficulty, calamityDifficultyColor)}+{Colorize(generationResult.Difficulty, difficultyColor)}";
         var rows = new List<(string label, string value)>
         {
-            (T("Версия игры", "Game Version"), Colorize(generationResult.GameType, gameTypeColor)),
-            (T("Имя", "Name"), Colorize(generationResult.Name, "white")),
-            (T("Имя мира", "World Name"), Colorize(worldName, "gold1")),
-            (T("Класс", "Class"), Colorize(generationResult.CharacterClass, classColor)),
-            (T("Зло мира", "World Evil"), Colorize(generationResult.Evil, evilColor)),
+            ("UI.Results.GameVersion".Localize(Language), Colorize(generationResult.GameType, gameTypeColor)),
+            ("UI.Results.Name".Localize(Language), Colorize(generationResult.Name, "white")),
+            ("UI.Results.WorldName".Localize(Language), Colorize(worldName, "gold1")),
+            ("UI.Results.Class".Localize(Language), Colorize(generationResult.CharacterClass, classColor)),
+            ("UI.Results.WorldEvil".Localize(Language), Colorize(generationResult.Evil, evilColor)),
         };
-        if (parameters.UseChallenges) rows.Add((T("Испытание", "Challenge"), Colorize(generationResult.Challenge, challengeColor)));
-        if (parameters.UseSeeds) rows.Add((T("Сид", "Seed"), Colorize(generationResult.Seed, seedColor)));
-        rows.Add((T("Размер карты", "Map Size"), Colorize(generationResult.MapSize, mapSizeColor)));
-        rows.Add((T("Сложность", "Difficulty"), difficulty));
+        if (parameters.UseChallenges) rows.Add(("UI.Results.Challenge".Localize(Language), Colorize(generationResult.Challenge, challengeColor)));
+        if (parameters.UseSeeds) rows.Add(("UI.Results.Seed".Localize(Language), Colorize(generationResult.Seed, seedColor)));
+        rows.Add(("UI.Results.MapSize".Localize(Language), Colorize(generationResult.MapSize, mapSizeColor)));
+        rows.Add(("UI.Results.Difficulty".Localize(Language), difficulty));
         PrintAligned(rows);
     }
 }

@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using TerrariaRandomizer.Configuration;
 
 namespace TerrariaRandomizer;
 
 public class Program
 {
-    public const string Version = "0.3";
-
     private static async Task Main(string[] args)
     {
         UI.Clear();
