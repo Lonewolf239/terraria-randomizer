@@ -8,7 +8,7 @@
 
 **Star this repo if it saves you time on character creation!**
 
-**Version:** 0.5 | [.NET 10.0](https://dotnet.microsoft.com/ru-ru/download/dotnet/10.0) | [Download Releases](https://github.com/Lonewolf239/terraria-randomizer/releases)
+**Version:** 0.5.1 | [.NET 10.0](https://dotnet.microsoft.com/ru-ru/download/dotnet/10.0) | [Download Releases](https://github.com/Lonewolf239/terraria-randomizer/releases)
 
 ## Features
 - Random character names from curated lists
