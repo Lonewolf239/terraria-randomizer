@@ -15,7 +15,7 @@
 - Vanilla or Calamity mod support
 - Colorful console UI with ASCII art (disable with flags)
 
-**Version:** 0.3
+**Version:** 0.4
 
 ## Examples
 
@@ -51,7 +51,8 @@
 --noColor                     Disable colors
 --disableClasses=CLASS,...    Disable classes (Melee,Ranged,Mage,Summoner,Rogue)
 --listClasses                 List available classes
--ru                           Russian language
+--language                    Use selected language (default: en)
+--listLanguages               List available languages
 --version                     Show version
 ```
 
@@ -70,7 +71,7 @@ dotnet publish -c Release -r linux-x64 --self-contained
 
 ## Author
 
-By.Lonewolf239
+Lonewolf239
 
 ***
 
