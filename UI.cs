@@ -25,7 +25,7 @@ public static class UI
         Console.WriteLine('\n');
     }
 
-    private static void PrintTitleNoAscii()
+    public static void PrintTitleNoAscii()
     {
         AnsiConsole.MarkupLine("[lime]Terraria Random[/]\n[yellow]By.Lonewolf239[/] [grey]v" + Constants.Version + "[/]");
         Console.WriteLine('\n');
@@ -66,6 +66,7 @@ public static class UI
         Console.CursorVisible = true;
         PrintTitleNoAscii();
         AnsiConsole.MarkupLine("UI.Help.Options".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.Settings".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.Help".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.Count".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.MaxAnimationFrames".Localize(Language));
@@ -79,6 +80,7 @@ public static class UI
         AnsiConsole.MarkupLine("UI.Help.Options.NoAscii".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.NoColor".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.DisableClasses".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.EnableClasses".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.ListClasses".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.Language".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.Languages".Localize(Language));

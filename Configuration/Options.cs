@@ -11,6 +11,9 @@ public class Options
     [Option("version")]
     public bool Version { get; set; }
 
+    [Option("settings")]
+    public bool Settings { get; set; }
+
     [Option("count", Default = 1)]
     public int Count { get; set; }
 
@@ -46,6 +49,9 @@ public class Options
 
     [Option("disableClasses", Separator = ',')]
     public IEnumerable<string> DisabledClasses { get; set; }
+
+    [Option("enableClasses", Separator = ',')]
+    public IEnumerable<string> EnabledClasses { get; set; }
 
     [Option("listClasses")]
     public bool ListClasses { get; set; }

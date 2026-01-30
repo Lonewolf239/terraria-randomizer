@@ -106,6 +106,18 @@ public static class Localization
             ["it"] = "I parametri sono stati inseriti incorrectamente. Usa --help per aiuto.",
             ["tr"] = "Parametreler yanlış girildi. Yardım için --help kullan."
         },
+        ["Parameters.Classes.Error"] = new()
+        {
+            ["en"] = "Cannot use --disableClasses and --enableClasses simultaneously",
+            ["ru"] = "Нельзя использовать --disableClasses и --enableClasses одновременно",
+            ["es"] = "No se pueden usar --disableClasses y --enableClasses simultáneamente",
+            ["de"] = "Cannot use --disableClasses and --enableClasses simultaneously",
+            ["fr"] = "Impossible d'utiliser --disableClasses et --enableClasses simultanément",
+            ["pl"] = "Nie można używać --disableClasses i --enableClasses jednocześnie",
+            ["pt"] = "Não é possível usar --disableClasses e --enableClasses simultaneamente",
+            ["it"] = "Impossibile usare --disableClasses e --enableClasses contemporaneamente",
+            ["tr"] = "--disableClasses ve --enableClasses aynı anda kullanılamaz"
+        },
         ["UI.Error"] = new()
         {
             ["en"] = "[red]Error:[/] ",
@@ -165,6 +177,18 @@ public static class Localization
             ["pt"] = "  [yellow]--help[/]                       [grey]Mostrar esta ajuda[/]",
             ["it"] = "  [yellow]--help[/]                       [grey]Mostra questa guida[/]",
             ["tr"] = "  [yellow]--help[/]                       [grey]Bu yardımı göster[/]"
+        },
+        ["UI.Help.Options.Settings"] = new()
+        {
+            ["en"] = "  [yellow]--settings[/]                   [grey]Show UI settings[/]",
+            ["ru"] = "  [yellow]--settings[/]                   [grey]Показать настройки UI[/]",
+            ["es"] = "  [yellow]--settings[/]                   [grey]Mostrar ajustes de UI[/]",
+            ["de"] = "  [yellow]--settings[/]                   [grey]UI-Einstellungen anzeigen[/]",
+            ["fr"] = "  [yellow]--settings[/]                   [grey]Afficher les paramètres UI[/]",
+            ["pl"] = "  [yellow]--settings[/]                   [grey]Pokaż ustawienia UI[/]",
+            ["pt"] = "  [yellow]--settings[/]                   [grey]Mostrar configurações UI[/]",
+            ["it"] = "  [yellow]--settings[/]                   [grey]Mostra impostazioni UI[/]",
+            ["tr"] = "  [yellow]--settings[/]                   [grey]UI ayarlarını göster[/]"
         },
         ["UI.Help.Options.Count"] = new()
         {
@@ -309,6 +333,18 @@ public static class Localization
             ["pt"] = "  [yellow]--disableClasses=CLASS,...[/]   [grey]Desativar classes específicas[/]",
             ["it"] = "  [yellow]--disableClasses=CLASS,...[/]   [grey]Disabilita classi specifiche[/]",
             ["tr"] = "  [yellow]--disableClasses=CLASS,...[/]   [grey]Belirli sınıfları devre dışı bırak[/]"
+        },
+        ["UI.Help.Options.EnableClasses"] = new()
+        {
+            ["en"] = "  [yellow]--enableClasses=CLASS,...[/]    [grey]Enable ONLY listed classes[/]",
+            ["ru"] = "  [yellow]--enableClasses=CLASS,...[/]    [grey]Включить ТОЛЬКО указанные классы[/]",
+            ["es"] = "  [yellow]--enableClasses=CLASS,...[/]    [grey]Activar SOLO clases listadas[/]",
+            ["de"] = "  [yellow]--enableClasses=CLASS,...[/]    [grey]NUR aufgeführte Klassen aktivieren[/]",
+            ["fr"] = "  [yellow]--enableClasses=CLASS,...[/]    [grey]Activer SEULEMENT classes listées[/]",
+            ["pl"] = "  [yellow]--enableClasses=CLASS,...[/]    [grey]Włącz TYLKO wymienione klasy[/]",
+            ["pt"] = "  [yellow]--enableClasses=CLASS,...[/]    [grey]Ativar APENAS classes listadas[/]",
+            ["it"] = "  [yellow]--enableClasses=CLASS,...[/]    [grey]Attiva SOLO classi elencate[/]",
+            ["tr"] = "  [yellow]--enableClasses=CLASS,...[/]    [grey]SADECE listelenen sınıfları etkinleştir[/]"
         },
         ["UI.Help.Options.ListClasses"] = new()
         {
