@@ -85,7 +85,7 @@ public class Parameters
 
     private static bool ParameterValidation(Options options)
     {
-        if (!Localization.GetLanguages().Contains(options.Language))
+        if (!Localization.GetLanguages().Contains(Localization.GetCode(options.Language)))
         {
             UI.PrintError("Parameters.Language.Error".Localize("en"));
             return false;
