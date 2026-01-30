@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using BeautifulConsole.GUI;
 using Spectre.Console;
 
@@ -13,15 +11,24 @@ public static class SettingsUI
     {
         UI.PrintTitleNoAscii();
         List<Slider> sliders = CreateSliders(options);
-        var rule = new Rule("[silver]  ↑↓ W/S  Select    ←→ A/D  Change    ↵ Enter/Esc Exit[/]");
+        if (Program.IsBeyondAsciiRange)
+        {
+            sliders[9].Value = true;
+            sliders[9].Disable();
+        }
+        var rule = new Rule("[silver]↑↓ W/S - Select, ←→ A/D - Change[/]");
         rule.Style = Style.Parse("grey");
+        var subRule = new Rule("[silver]↵ - Apply, Esc - Cancel[/]");
+        subRule.Style = Style.Parse("grey");
         UpdateSliders(sliders, 0);
+        AnsiConsole.Write("Settings:");
         while (true)
         {
-            Console.Write($"\x1b[5;0H");
+            Console.Write($"\x1b[6;0H");
             for (int i = 0; i < sliders.Count; i++) sliders[i].Draw(i == SelectedIndex, 64);
-            Console.Write($"\x1b[18;0H");
+            Console.Write($"\x1b[19;0H");
             AnsiConsole.Write(rule);
+            AnsiConsole.Write(subRule);
             switch (Console.ReadKey(true).Key)
             {
                 case ConsoleKey.UpArrow or ConsoleKey.W: MoveSelection(sliders, -1); break;
@@ -61,10 +68,8 @@ public static class SettingsUI
         }
         else sliders[2].Enable();
         sliders[1].Enabled = !sliders[2].Value;
-        if ((bool)sliders[3].Value) sliders[4].Disable();
-        else sliders[4].Enable();
-        if ((bool)sliders[4].Value) sliders[3].Disable();
-        else sliders[3].Enable();
+        sliders[4].Enabled = !sliders[3].Value;
+        sliders[3].Enabled = !sliders[4].Value;
     }
 
     private static List<Slider> CreateSliders(Options options) =>

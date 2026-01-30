@@ -2,7 +2,7 @@ namespace TerrariaRandomizer.Data;
 
 public static class Constants
 {
-    public const string Version = "0.5";
+    public const string Version = "0.5.1";
     public static readonly string AsciiArt = @"       [#228B22]+%*[/]            [lime]______[/]
    [#228B22]**+*=+=+*#[/]        [lime]/\__  _\                                     __[/]
    [#228B22]*#**+++*+#+%[/]      [lime]\/_/\ \/    __   _ __   _ __    __     _ __ /\_\     __[/]

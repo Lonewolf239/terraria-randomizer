@@ -1,16 +1,17 @@
-﻿using System;
-using System.Threading.Tasks;
-using TerrariaRandomizer.Configuration;
+﻿using TerrariaRandomizer.Configuration;
 
 namespace TerrariaRandomizer;
 
 public class Program
 {
+    public static bool IsBeyondAsciiRange { get; private set; } = false;
+
     private static async Task Main(string[] args)
     {
         UI.Clear();
         Console.CursorVisible = false;
         Console.OutputEncoding = System.Text.Encoding.UTF8;
+        if (Console.WindowWidth < 85) IsBeyondAsciiRange = true;
         var parameters = new Parameters(args);
         var rand = new Random(Guid.NewGuid().GetHashCode());
         UI.PrintTitle();

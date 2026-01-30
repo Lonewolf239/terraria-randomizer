@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using CommandLine;
-using TerrariaRandomizer.Configuration.Settings;
 using TerrariaRandomizer.Data;
 
 namespace TerrariaRandomizer.Configuration;
@@ -34,24 +30,14 @@ public class Parameters
         var parserResult = parser.ParseArguments<Options>(args).MapResult(options =>
         {
             if (!ParameterValidation(options)) return 1;
+            SetParameters(options);
             if (options.Settings)
             {
-                options = SettingsUI.Show(options);
+                options = Settings.SettingsUI.Show(options);
+                SetParameters(options);
                 UI.Clear();
             }
             UI.Language = Language = Localization.GetCode(options.Language);
-            if (options.Count > 1) options.Fast = true;
-            Count = options.Count;
-            MaxAnimationFrames = options.MaxAnimationFrames;
-            Fast = options.Fast;
-            OnlyVanilla = options.OnlyVanilla;
-            OnlyCalamity = options.OnlyCalamity;
-            UseSeeds = options.UseSeeds;
-            UseChallenges = options.UseChallenges;
-            UseWorldSize = options.UseWorldSize;
-            UseDifficulty = options.UseDifficulty;
-            UI.NoAscii = NoAscii = options.NoAscii;
-            if (options.NoColor) UI.NoColor();
             List<string> disabledClasses = new();
             if (options.DisabledClasses?.Any() == true) disabledClasses = DisableClasses(options.DisabledClasses.Distinct().ToList());
             if (options.EnabledClasses?.Any() == true) disabledClasses = DisableClasses(options.EnabledClasses.Distinct().ToList(), false);
@@ -67,6 +53,23 @@ public class Parameters
             UI.PrintError("Parameters.InvalidInput.Error".Localize(Language));
             return -1;
         });
+    }
+
+    private void SetParameters(Options options)
+    {
+        if (options.Count > 1) options.Fast = true;
+        Count = options.Count;
+        MaxAnimationFrames = options.MaxAnimationFrames;
+        Fast = options.Fast;
+        OnlyVanilla = options.OnlyVanilla;
+        OnlyCalamity = options.OnlyCalamity;
+        UseSeeds = options.UseSeeds;
+        UseChallenges = options.UseChallenges;
+        UseWorldSize = options.UseWorldSize;
+        UseDifficulty = options.UseDifficulty;
+        UI.NoAscii = NoAscii = Program.IsBeyondAsciiRange || options.NoAscii;
+        if (options.NoColor) UI.NoColor();
+        else UI.UseColor();
     }
 
     private static List<string> DisableClasses(List<string> classes, bool disable = true)

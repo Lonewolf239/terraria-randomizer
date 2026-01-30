@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using Spectre.Console;
 using TerrariaRandomizer.Configuration;
 using TerrariaRandomizer.Data;
@@ -39,6 +36,8 @@ public static class UI
     }
 
     public static void Clear() => AnsiConsole.Clear();
+
+    public static void UseColor() => AnsiConsole.Profile.Capabilities.ColorSystem = ColorSystem.TrueColor;
 
     public static void NoColor() => AnsiConsole.Profile.Capabilities.ColorSystem = ColorSystem.NoColors;
 

@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using CommandLine;
 
 namespace TerrariaRandomizer.Configuration;
