@@ -65,8 +65,8 @@ public static class UI
         Console.CursorVisible = true;
         PrintTitleNoAscii();
         AnsiConsole.MarkupLine("UI.Help.Options".Localize(Language));
-        AnsiConsole.MarkupLine("UI.Help.Options.Settings".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.Help".Localize(Language));
+        AnsiConsole.MarkupLine("UI.Help.Options.Settings".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.Count".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.MaxAnimationFrames".Localize(Language));
         AnsiConsole.MarkupLine("UI.Help.Options.Fast".Localize(Language));
